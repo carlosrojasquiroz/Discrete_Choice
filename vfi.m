@@ -1,6 +1,7 @@
-function [V,g_a,g_n,g_c]=vfi(p,m)
+function s=vfi(p,m)
 %---------------------------------------------------------------------------------------------------------------------------
-% This function executes the VFI algorithm to solve a model with discrete choice
+% This function executes the VFI algorithm to solve a model with discrete
+% choice. It saves the solution in the structure "s" 
 %---------------------------------------------------------------------------------------------------------------------------
 V_ww=utility(p.w*m.z_grid+(1+p.r)*m.a_grid,p.sigma)-p.phi;% value function of working
 V_nw=utility((1+p.r)*m.a_grid,p.sigma); % value function of not working
@@ -22,7 +23,10 @@ endtime=toc;
 if p.disp1==1   
     disp(['Time to execute the algorithm ',num2str(endtime)])
 end
-g_a=m.a_grid(p_a);
-g_c=p.w*m.z_grid+(1+p.r)*m.a_grid-g_a;
+s.g_a=m.a_grid(p_a);
+s.g_c=p.w*m.z_grid+(1+p.r)*m.a_grid-g_a;
+s.p_a=p_a;
+s.V=V;
+s.g_n=g_n;
 %---------------------------------------------------------------------------------------------------------------------------
 
