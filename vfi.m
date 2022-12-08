@@ -24,7 +24,7 @@ if p.disp1==1
     disp(['Time to execute the algorithm ',num2str(endtime)])
 end
 s.g_a=m.a_grid(p_a);
-s.g_c=p.w*m.z_grid+(1+p.r)*m.a_grid-g_a;
+s.g_c=p.w*m.z_grid+(1+p.r)*m.a_grid-s.g_a;
 s.p_a=p_a;
 s.V=V;
 s.g_n=g_n;

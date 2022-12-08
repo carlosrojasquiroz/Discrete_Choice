@@ -20,7 +20,7 @@ if p.fig==1
         xlabel('$a$','fontsize',FS,'interpreter','latex')
         ylabel('$V(a)$','fontsize',FS,'interpreter','latex')
         title('Value function')
-        scatter(m.a_grid(xi),s.V(xi),'filled','k','HandleVisibility','off')
+        scatter(m.a_grid(xi),s.V(xi),'filled','k','HandleVisibility','off','SizeData',100)
         yline(0,'LineStyle',':', 'LineWidth',LW,'HandleVisibility','off')
         xlim([p.Amin p.Amax])
         ymin=min(s.V);
