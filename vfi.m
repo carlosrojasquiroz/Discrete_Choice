@@ -3,17 +3,21 @@ function s=vfi(p,m)
 % This function executes the VFI algorithm to solve a model with discrete
 % choice. It saves the solution in the structure "s" 
 %---------------------------------------------------------------------------------------------------------------------------
-c_ww=p.w*m.z_grid+(1+p.r)*m.a_grid;
-c_nw=(1+p.r)*m.a_grid;
-V_ww=utility(c_ww,p.sigma)-p.phi;% value function of working
-V_nw=utility(c_nw,p.sigma); % value function of not working
-V=max(V_ww,V_nw);% the "actual" value function (comparing between both before)
 distV=1;
 iter=0;
+% Period T (end of the economy)
+% Working state
+c1=p.w*m.z_grid+(1+p.r)*m.a_grid;
+V1=utility(c1,p.sigma)-p.phi; 
+% Not working state
+c0=(1+p.r)*m.a_grid;
+V0=utility(c0,p.sigma); 
+% Actual value function (comparing between both before)
+V=max(V1,V0);
 tic;
 while distV>p.tol && iter<p.maxiter
     [Vnew,g_a,g_n]=vfi_step(p,m,V);
-    distV=max(abs(V(:)-Vnew(:)));
+    distV=norm(V-Vnew)./(1+norm(V));
     V=Vnew;
     iter=iter+1;
     if p.disp1==1   
