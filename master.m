@@ -3,8 +3,8 @@ clc,close,clear;
 %% SIM with discrete choices
 %---------------------------------------------------------------------------------------------------------------------------
 % This code solves the standard incomplete markets model (SIM) with discrete
-% choices (working or not). The current version of the model doesn't have
-% idiosyncratic shocks. 
+% choices (working or not) and extreme value shocks. The current version of the model 
+% doesn't have idiosyncratic shocks. 
 %---------------------------------------------------------------------------------------------------------------------------
 %% 1. Parameters
 %---------------------------------------------------------------------------------------------------------------------------
