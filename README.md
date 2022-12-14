@@ -30,3 +30,5 @@ where $c_t$ is consumption, $a_t$ are assets, $z$ is labor productivity, $w$ is 
 The calibration is as follows: $\beta=0.96, \ \sigma=1.0, \ B=0, \ \phi=0.75, \ r=0.03, \ w=1, \ z=1$, and the number of assets grid point is set as $n_{aa}=1000$. Finally, utility function is a CRRA form. 
 
 The model is solved by value function iteration. The `master.m` file also plots figures of the value and policy functions. If you want to deactivate this option then "comment" (%) line 31 in that script. 
+
+This code works with external functions `logsumexp.m` and `softmax.m`, written by Nick Highman (see https://it.mathworks.com/matlabcentral/fileexchange/84892-logsumexp-softmax). 
