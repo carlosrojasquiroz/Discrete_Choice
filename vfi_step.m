@@ -1,4 +1,4 @@
-function [Vnew,g_a,g_n]=vfi_step(p,m,V)
+function [Vnew,V1,V0,p1,p0]=vfi_step(p,m,V)
 %---------------------------------------------------------------------------------------------------------------------------
 % This function gets the optimal saving and working policy
 %---------------------------------------------------------------------------------------------------------------------------
@@ -17,7 +17,13 @@ for d_2=1:p.naa
     [V0(1,d_2),p0(1,d_2)]=max(V_aux0);
 end
 % Actual value
-Vnew=max(V1,V0);
-g_n=(V1>V0);
-g_a=g_n.*m.a_grid(p1)+(1-g_n).*m.a_grid(p0);
+if p.evind==0
+    Vnew=max(V1,V0);
+else
+    Vnew=zeros(1,p.naa);
+    Vt=[V1; V0];
+    for ind_2=1:p.naa
+        Vnew(1,ind_2)=p.epsilon*logsumexp(Vt(:,ind_2)./p.epsilon);
+    end
+end
 %---------------------------------------------------------------------------------------------------------------------------
